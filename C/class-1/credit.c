@@ -10,17 +10,17 @@ int main(void)
   // MASTERCARD AND VISA HAS 16 NUMBERS
   // AMERICAN EXPRESS HAS 15 NUMBERS
   // DON'T FORGET TO ADD AN L TO THE END OF THE NUMBER TO REPRESENT A LONG TYPE
-  if (validateCard(374501054623843L) == 1)
+  if (validateCard(ENTER NUMBER HERE) == 1)
   {
-    if (validateFlag(374501054623843L) == 1)
+    if (validateFlag(ENTER NUMBER HERE) == 1)
     {
       printf("Your card is MASTERCARD\n");
     }
-    else if (validateFlag(374501054623843L) == 2)
+    else if (validateFlag(ENTER NUMBER HERE) == 2)
     {
       printf("Your card is AMERICAN EXPRESS\n");
     }
-    else if (validateFlag(374501054623843L) == 3)
+    else if (validateFlag(ENTER NUMBER HERE) == 3)
     {
       printf("Your card is VISA\n");
     }
