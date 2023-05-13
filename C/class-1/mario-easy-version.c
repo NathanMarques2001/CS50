@@ -7,6 +7,8 @@ int main(void)
 {
   int quantity = getQuantity();
   printBlock(quantity);
+
+  return 0;
 }
 
 void printBlock(int n)

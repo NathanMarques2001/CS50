@@ -7,6 +7,8 @@ int main(void)
 {
   int quantity = getQuantity();
   printHashesAndSpaces(quantity);
+
+  return 0;
 }
 
 void printHashesAndSpaces(int n)
