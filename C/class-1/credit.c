@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 int validateFlag(long number);
 long calculateDivider(int divider);
@@ -27,11 +26,13 @@ int main(void)
     else
     {
       printf("We only accept the following flags: MASTERCARD, AMERICAN EXPRESS AND VISA!\n");
+      return 1;
     }
   }
   else
   {
     printf("Número do cartão INVÁLIDO\n");
+    return 1;
   }
   return 0;
 }
