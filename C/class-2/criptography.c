@@ -1,18 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 const int TOTAL = 1000;
 
 char *getText(void);
+int getStrength(void);
 char *criptography(char text[], int strength);
 
 int main(void)
 {
   char *text = getText();
-  char *cryptographyText = criptography(text, 6);
-  printf("%s\n", cryptographyText);
+  int strength = getStrength();
+  *text = *criptography(text, strength);
+  printf("%s\n", text);
 
-  free(cryptographyText);
   free(text);
 
   return 0;
@@ -43,48 +46,32 @@ char *getText(void)
   return input;
 }
 
-char *criptography(char text[], int strength) {
-  int min = 0;
-  int max = 0;
-  int estouro = 0;
-  int sub = 0;
-  int i = 0;
-  
-  char *newText = malloc(sizeof(char) * TOTAL);
-  if (newText == NULL)
+int getStrength(void)
+{
+  int x = 0;
+
+  printf("\nAgora, insira força da encriptação: ");
+
+  do
   {
-    printf("Erro: não foi possível alocar memória.\n");
-    exit(1);
+    scanf("%i", &x);
+  } while (x <= 0);
+
+  return x;
+}
+
+char *criptography(char text[], int strength)
+{
+  int length = strlen(text);
+
+  for (int i = 0; i < length; i++)
+  {
+    if (isalpha(text[i]))
+    {
+      char base = islower(text[i]) ? 'a' : 'A';
+      text[i] = ((text[i] - base + strength) % 26) + base;
+    }
   }
 
-  do{
-    newText[i] = text[i];
-    i++;
-  }while(text[i] != '\0');
-
-  for(int i = 0; i < TOTAL; i++)
-    {
-      if(newText[i] >= 'a' && newText[i] <= 'z'){
-        min = 97;
-        max = 122;
-        if(newText[i] + strength > max){
-          estouro = newText[i] + strength;
-          sub = estouro - max;
-          newText[i] = min + sub;
-        } else {
-          newText[i] += strength;
-        }
-      } else if(newText[i] >= 'A' && newText[i] <= 'Z'){
-        min = 64;
-        max = 90;
-        if(newText[i] + strength > max){
-          estouro = newText[i] + strength;
-          sub = estouro - max;
-          newText[i] = min + sub;
-        } else {
-          newText[i] += strength;
-        }
-      }
-    }
-  return newText;
+  return text;
 }
