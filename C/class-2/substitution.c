@@ -7,7 +7,7 @@ const int TOTAL = 1000;
 
 char *getText(void);
 char *getKey(void);
-char *criptography(char text[],  char key[]);
+char *criptography(char text[], char key[]);
 
 int main(void)
 {
