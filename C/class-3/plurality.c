@@ -1,18 +1,65 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <myLibrary.h>
 
-int main(void)
+const int MAX = 9;
+const int NAME_MAX = 100;
+
+typedef struct
 {
-  struct candidate
-  {
-    char name[100];
-    int votes;
-  };
+  char *name;
+  int votes;
+} Candidate;
 
-  struct candidate candidate1 = {"Nathan", 0};
-  printf("%s %i",candidate1.name, candidate1.votes);
+int vote(char name);
+void print_winner(void);
+
+int main(int argc, char argv[])
+{
+  Candidate candidateArray[MAX];
+  int voter_count;
+
+  if (argc != 1)
+  {
+    for (int i = 0; i < argc - 1; i++)
+    {
+      candidateArray[i].name = argv[i + 1];
+      candidateArray[i].votes = 0;
+    }
+  }
+  printf("Number of voters: ");
+  scanf("%i", &voter_count);
+
+  for (int i = 0; i < voter_count; i++)
+  {
+    char name = get_string();
+
+    // Check for invalid vote
+    if (!vote(name))
+    {
+      printf("Invalid vote.\n");
+    }
+
+    vote(name);
+  }
+
   return 0;
 }
 
-void getCandidateData(int quantity)
+int vote(char name)
 {
+  for (int i = 0; i < 2; i++)
+  {
+    /* code */
+  }
+
+  return 0;
+}
+
+// Print the winner (or winners) of the election
+void print_winner(void)
+{
+  // TODO
+  return;
 }

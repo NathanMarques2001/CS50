@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <myLibrary.h>>
 
 const int TOTAL = 1000;
 
-char *getText(void);
 int wordsQuantity(char text[]);
 float lettersAverage(char text[], int words);
 float sentencesAverage(char text[], int words);
@@ -11,7 +11,7 @@ int ColemanLiauIndex(float letterAvg, float sentenceAvg);
 
 int main(void)
 {
-  char *text = getText();
+  char *text = get_string();
   int words = wordsQuantity(text);
   float letters = lettersAverage(text, words);
   float sentences = sentencesAverage(text, words);
@@ -33,31 +33,6 @@ int main(void)
   free(text);
 
   return 0;
-}
-
-char *getText(void)
-{
-  char *input = malloc(sizeof(char) * TOTAL);
-  if (input == NULL)
-  {
-    printf("Erro: não foi possível alocar memória.\n");
-    exit(1);
-  }
-  char character;
-  int i = 0;
-
-  printf("Enter the text here: ");
-
-  do
-  {
-    character = getchar();
-    input[i] = character;
-    i++;
-  } while (character != '\n' && i < TOTAL);
-
-  input[i - 1] = '\0';
-
-  return input;
 }
 
 int wordsQuantity(char text[])

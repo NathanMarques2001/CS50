@@ -1,0 +1,39 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+char *get_string(void)
+{
+  int size = 10;  // Tamanho inicial da string
+  int length = 0; // Comprimento atual da string
+  char *input = (char *)malloc(sizeof(char) * size);
+  if (input == NULL)
+  {
+    printf("Erro: não foi possível alocar memória.\n");
+    exit(1);
+  }
+
+  printf("Digite o texto aqui: ");
+
+  char character;
+  while ((character = getchar()) != '\n')
+  {
+    input[length] = character;
+    length++;
+
+    // Verifica se o tamanho atual atingiu o limite
+    if (length >= size)
+    {
+      size *= 2; // Dobra o tamanho
+      input = (char *)realloc(input, sizeof(char) * size);
+      if (input == NULL)
+      {
+        printf("Erro: não foi possível realocar memória.\n");
+        exit(1);
+      }
+    }
+  }
+
+  input[length] = '\0'; // Adiciona o caractere nulo de terminação
+
+  return input;
+}

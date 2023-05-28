@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <myLibrary.h>>
 
 const int TOTAL = 1000;
 
-char *getText(void);
 char *getKey(void);
 char *criptography(char text[], char key[]);
 
 int main(void)
 {
-  char *text = getText();
-  char *key = getKey();
+  char *text = get_string();
+  char *key = get_string();
   *text = *criptography(text, key);
   printf("%s\n", text);
 
@@ -20,31 +20,6 @@ int main(void)
   free(key);
 
   return 0;
-}
-
-char *getText(void)
-{
-  char *input = malloc(sizeof(char) * TOTAL);
-  if (input == NULL)
-  {
-    printf("Erro: não foi possível alocar memória.\n");
-    exit(1);
-  }
-  char character;
-  int i = 0;
-
-  printf("Enter the text here: ");
-
-  do
-  {
-    character = getchar();
-    input[i] = character;
-    i++;
-  } while (character != '\n' && i < TOTAL);
-
-  input[i - 1] = '\0';
-
-  return input;
 }
 
 char *getKey(void)

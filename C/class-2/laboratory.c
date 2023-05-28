@@ -2,17 +2,19 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+#include <myLibrary.h>
 
 int POINTS[] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 const int TOTAL = 1000;
 
-char *getText(char message[]);
 int compute_score(char word[]);
 
 int main(void)
 {
-  char *word1 = getText("Player 1: ");
-  char *word2 = getText("Player 2: ");
+  printf("Player 1: ");
+  char *word1 = get_string();
+  printf("Player 2: ");
+  char *word2 = get_string();
 
   int score1 = compute_score(word1);
   int score2 = compute_score(word2);
@@ -32,32 +34,6 @@ int main(void)
 
   free(word1);
   free(word2);
-}
-
-char *getText(char message[])
-{
-  char *input = malloc(sizeof(char) * TOTAL);
-  if (input == NULL)
-  {
-    printf("Erro: não foi possível alocar memória.\n");
-    exit(1);
-  }
-  char character;
-  int i = 0;
-
-  printf("\nEnter a word:\n");
-  printf("%s\n", message);
-
-  do
-  {
-    character = getchar();
-    input[i] = character;
-    i++;
-  } while (character != '\n' && i < TOTAL);
-
-  input[i - 1] = '\0';
-
-  return input;
 }
 
 int compute_score(char word[])
